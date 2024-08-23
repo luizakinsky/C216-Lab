@@ -1,0 +1,94 @@
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 1
+Digite o nome do produto: banana
+Digite a quantidade: 10
+Digite o preço: 3
+Item 'banana' cadastrado/atualizado com sucesso!
+
+
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 2
+
+Produtos no estoque:
+Nome: banana, Quantidade: 10, Preço: R$3.00
+
+
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 1
+Digite o nome do produto: maçã
+Digite a quantidade: 5
+Digite o preço: 4
+Item 'maçã' cadastrado/atualizado com sucesso!
+
+
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 2
+
+Produtos no estoque:
+Nome: banana, Quantidade: 10, Preço: R$3.00
+Nome: maçã, Quantidade: 5, Preço: R$4.00
+
+
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 3
+Digite o nome do produto para consulta: banana
+Nome: banana, Quantidade: 10, Preço: R$3.00
+
+
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 4
+Digite o nome do produto para venda: banana
+Digite a quantidade a ser vendida: 5
+5 unidade(s) de 'banana' vendida(s).
+Valor total: R$15.00
+
+
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 3
+Digite o nome do produto para consulta: banana
+Nome: banana, Quantidade: 5, Preço: R$3.00
+
+
+Menu:
+1. Cadastrar Produtos
+2. Listar Produtos
+3. Consultar Produtos
+4. Vender Produtos
+5. Sair
+Escolha uma opção: 5
+Saindo do sistema!
