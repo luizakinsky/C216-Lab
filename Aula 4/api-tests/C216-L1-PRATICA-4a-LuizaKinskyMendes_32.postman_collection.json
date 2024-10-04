@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "9e4a38db-0539-4208-9fdd-03be7ba78947",
+		"name": "C216-L1-PRATICA-4a-LuizaKinskyMendes_32",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38473284"
+	},
+	"item": [
+		{
+			"name": "Listar todos os itens",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should be a list\", function () {",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/estoque",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"estoque"
+					]
+				},
+				"description": "Testa o endpoint para listar todos os livros cadastrados."
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar item por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should contain item details\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property('nome');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/estoque/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"estoque",
+						"1"
+					]
+				},
+				"description": "Busca um livro específico pelo ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar um Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Response should contain confirmation message\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Item adicionado com sucesso!');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Produto C\",\n    \"descricao\": \"Descricao C\",\n    \"preco\": 10.0,\n    \"quantidade\": 15\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/estoque/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"estoque",
+						""
+					]
+				},
+				"description": "Adiciona um novo livro ao repositório"
+			},
+			"response": []
+		},
+		{
+			"name": "Vender um Livro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm sale\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Venda realizada com sucesso!');",
+							"});",
+							"",
+							"// Validar se a quantidade foi reduzida",
+							"pm.sendRequest(\"http://127.0.0.1:8000/api/v1/estoque/1\", function (err, res) {",
+							"    pm.test(\"Quantidade de itens foi atualizada\", function () {",
+							"        let book = res.json();",
+							"        pm.expect(item.quantidade).to.eql(8); // A quantidade deve ter sido reduzida",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"quantidade\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/estoque/1/vender/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"estoque",
+						"1",
+						"vender",
+						""
+					]
+				},
+				"description": "Deduz uma unidade da quantidade de um livro ao realizar uma venda"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Atributos de um Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm update\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Item atualizado com sucesso!');",
+							"});",
+							"",
+							"// Validar se o livro foi atualizado corretamente",
+							"pm.sendRequest(\"http://127.0.0.1:8000/api/v1/estoque/3\", function (err, res) {",
+							"    pm.test(\"Os atributos do item foram atualizados\", function () {",
+							"        let item = res.json();",
+							"        pm.expect(item.nome).to.eql(\"Produto C\");",
+							"        pm.expect(item.descricao).to.eql(\"Descricao C\");",
+							"        pm.expect(item.preco).to.eql(10.0);",
+							"        pm.expect(item.quantidade).to.eql(5.0); // Verifica se a quantidade foi alterada",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Produto C\",\n  \"descricao\": \"Descricao C\",\n  \"quantidade\": 10,\n  \"preco\": 5.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/estoque/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"estoque",
+						"3"
+					]
+				},
+				"description": "Atualiza os atributos de um livro, exceto o ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Remover um Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm deletion\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Item removido com sucesso!');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/estoque/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"estoque",
+						"1"
+					]
+				},
+				"description": "Remove um livro do repositório pelo ID."
+			},
+			"response": []
+		}
+	]
+}
