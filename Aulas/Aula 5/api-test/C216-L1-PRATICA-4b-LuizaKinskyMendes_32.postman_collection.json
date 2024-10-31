@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "37ea893a-ea9f-460c-acf1-56a57e6f6f3d",
+		"name": "C216-L1-PRATICA-4b-LuizaKinskyMendes_32",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38473284"
+	},
+	"item": [
+		{
+			"name": "Remover Todos os Filmes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm deletion\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Banco de dados limpo com sucesso!');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8000/api/v1/filmes/",
+				"description": "Remove todos os filmes do repositório."
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os Filmes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should be a list\", function () {",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/api/v1/filmes/",
+				"description": "Testa o endpoint para listar todos os filmes cadastrados."
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Filme por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should contain movie details\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property('titulo');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/v1/filmes/1",
+				"description": "Busca um filme específico pelo ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar um Filme",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Response should contain confirmation message\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Filme adicionado com sucesso!');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"titulo\": \"Clean Code\",\n  \"autor\": \"Robert C. Martin\",\n  \"ano_publicacao\": 2008,\n  \"quantidade\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/v1/filmes/",
+				"description": "Adiciona um novo filme ao repositório."
+			},
+			"response": []
+		},
+		{
+			"name": "Vender um Filme",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm sale\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Venda realizada com sucesso!');",
+							"});",
+							"",
+							"// Validar se a quantidade foi reduzida",
+							"pm.sendRequest(\"http://127.0.0.1:8000/api/v1/filmes/1\", function (err, res) {",
+							"    pm.test(\"Quantidade do filme foi atualizada\", function () {",
+							"        let book = res.json();",
+							"        pm.expect(book.quantidade).to.eql(8); // A quantidade deve ter sido reduzida",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"quantidade\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/v1/filmes/1/vender/",
+				"description": "Deduz uma unidade da quantidade de um filme ao realizar uma venda."
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todas as vendas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm sales details\", function () {",
+							"    let venda = pm.response.json()[0];",
+							"    pm.expect(venda.valor_venda).to.eql(100.0); // O valor deve ser o calculo correto da venda efetuada",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/v1/vendas/",
+				"description": "Testa o endpoint para listar todas as vendas."
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Atributos de um Filme",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm update\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Filme atualizado com sucesso!');",
+							"});",
+							"",
+							"// Validar se o livro foi atualizado corretamente",
+							"pm.sendRequest(\"http://127.0.0.1:8000/api/v1/filmes/3\", function (err, res) {",
+							"    pm.test(\"Os atributos do filme foram atualizados\", function () {",
+							"        let movie = res.json();",
+							"        pm.expect(movie.titulo).to.eql(\"Clean Code - Revised Edition\");",
+							"        pm.expect(movie.diretor).to.eql(\"Robert C. Martin\");",
+							"        pm.expect(movie.ano_publicacao).to.eql(2020);",
+							"        pm.expect(movie.quantidade).to.eql(10); // Verifica se a quantidade foi alterada",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"titulo\": \"Clean Code - Revised Edition\",\n  \"autor\": \"Robert C. Martin\",\n  \"ano_publicacao\": 2020,\n  \"quantidade\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/api/v1/filmes/3",
+				"description": "Atualiza os atributos de um filme, exceto o ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Remover um Filme",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm deletion\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Filme removido com sucesso!');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/v1/filmes/1",
+				"description": "Remove um filme do repositório pelo ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Remover Todos os Filmes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response should confirm deletion\", function () {",
+							"    pm.expect(pm.response.json().message).to.eql('Banco de dados limpo com sucesso!');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:8000/api/v1/filmes/",
+				"description": "Remove todos os filmes do repositório."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
