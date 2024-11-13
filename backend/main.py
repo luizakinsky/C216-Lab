@@ -91,7 +91,7 @@ async def listar_filme_por_id(filme_id: int):
     conn = await get_database()
     try:
         # Buscar o filme por ID
-        query = "SELECT * FROM filme WHERE id = $1"
+        query = "SELECT * FROM filmes WHERE id = $1"
         filme = await conn.fetchrow(query, filme_id)
         if filme is None:
             raise HTTPException(status_code=404, detail="Filme não encontrado.")
@@ -100,7 +100,7 @@ async def listar_filme_por_id(filme_id: int):
         await conn.close()
 
 # 4. Vender um filme (reduzir quantidade no estoque)
-@app.put("/api/v1/filmes/{filmes_id}/vender/")
+@app.put("/api/v1/filmes/{filme_id}/vender/")
 async def vender_filme(filme_id: int, venda: VendaFilme):
     conn = await get_database()
     try:
@@ -116,7 +116,7 @@ async def vender_filme(filme_id: int, venda: VendaFilme):
 
         # Atualizar a quantidade no banco de dados
         nova_quantidade = filme['quantidade'] - venda.quantidade
-        update_query = "UPDATE livros SET quantidade = $1 WHERE id = $2"
+        update_query = "UPDATE filmes SET quantidade = $1 WHERE id = $2"
         await conn.execute(update_query, nova_quantidade, filme_id)
 
 
@@ -142,7 +142,7 @@ async def vender_filme(filme_id: int, venda: VendaFilme):
 async def atualizar_filme(filme_id: int, filme_atualizacao: AtualizarFilme):
     conn = await get_database()
     try:
-        # Verificar se o livro existe
+        # Verificar se o filme existe
         query = "SELECT * FROM filmes WHERE id = $1"
         livro = await conn.fetchrow(query, filme_id)
         if livro is None:
@@ -198,7 +198,7 @@ async def resetar_filmes():
             sql_commands = file.read()
         # Execute SQL commands
         await conn.execute(sql_commands)
-        return {"message": "Banco de dados limpo com sucesso!!"}
+        return {"message": "Banco de dados limpo com sucesso!"}
     finally:
         await conn.close()
 
