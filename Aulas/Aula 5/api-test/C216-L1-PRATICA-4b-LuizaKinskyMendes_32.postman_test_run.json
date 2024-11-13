@@ -1,0 +1,367 @@
+{
+	"id": "9b152c04-886c-4569-af5d-54cf9d355ac7",
+	"name": "C216-L1-PRATICA-4b-LuizaKinskyMendes_32",
+	"timestamp": "2024-11-13T21:04:13.667Z",
+	"collection_id": "38473284-37ea893a-ea9f-460c-acf1-56a57e6f6f3d",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 20,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-11-13T21:04:12.734Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "a04bc1bf-1646-46ed-96f3-88ae67523ad0",
+			"name": "Remover Todos os Filmes",
+			"url": "http://localhost:8000/api/v1/filmes/",
+			"time": 117,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm deletion": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				117
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm deletion": true
+				}
+			]
+		},
+		{
+			"id": "f3b4344f-9031-4e15-b489-6d470540bc41",
+			"name": "Listar todos os Filmes",
+			"url": "http://localhost:8000/api/v1/filmes/",
+			"time": 38,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should be a list": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be a list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				38
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should be a list": true
+				}
+			]
+		},
+		{
+			"id": "9280f208-8969-4729-8e59-6d73210a2f7e",
+			"name": "Buscar Filme por ID",
+			"url": "http://127.0.0.1:8000/api/v1/filmes/1",
+			"time": 32,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should contain movie details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should contain movie details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				32
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should contain movie details": true
+				}
+			]
+		},
+		{
+			"id": "c4c6d23b-c039-4b0e-8ca5-78b598cbcb1d",
+			"name": "Adicionar um Filme",
+			"url": "http://localhost:8000/api/v1/filmes/",
+			"time": 34,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response should contain confirmation message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should contain confirmation message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				34
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response should contain confirmation message": true
+				}
+			]
+		},
+		{
+			"id": "7b7ffb12-5eac-4f4d-b1ac-180600ba3cd6",
+			"name": "Vender um Filme",
+			"url": "http://127.0.0.1:8000/api/v1/filmes/1/vender/",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm sale": true,
+				"Quantidade do filme foi atualizada": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm sale": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Quantidade do filme foi atualizada": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm sale": true,
+					"Quantidade do filme foi atualizada": true
+				}
+			]
+		},
+		{
+			"id": "a6c8805d-ebc3-4bb9-ae4f-1dbdeb84f987",
+			"name": "Listar todas as vendas",
+			"url": "http://127.0.0.1:8000/api/v1/vendas/",
+			"time": 30,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm sales details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm sales details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm sales details": true
+				}
+			]
+		},
+		{
+			"id": "61a69450-c1cc-4dd6-814c-814580768a1d",
+			"name": "Atualizar Atributos de um Filme",
+			"url": "http://127.0.0.1:8000/api/v1/filmes/3",
+			"time": 31,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm update": true,
+				"Os atributos do filme foram atualizados": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm update": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Os atributos do filme foram atualizados": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm update": true,
+					"Os atributos do filme foram atualizados": true
+				}
+			]
+		},
+		{
+			"id": "6a93e07b-42ad-43e4-8678-2489c9ea24db",
+			"name": "Remover um Filme",
+			"url": "http://127.0.0.1:8000/api/v1/filmes/1",
+			"time": 31,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm deletion": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm deletion": true
+				}
+			]
+		},
+		{
+			"id": "1fe25316-b891-48e6-a478-5225ee1c66f2",
+			"name": "Remover Todos os Filmes",
+			"url": "http://127.0.0.1:8000/api/v1/filmes/",
+			"time": 36,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should confirm deletion": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should confirm deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				36
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should confirm deletion": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 386,
+	"collection": {
+		"requests": [
+			{
+				"id": "a04bc1bf-1646-46ed-96f3-88ae67523ad0",
+				"method": "DELETE"
+			},
+			{
+				"id": "f3b4344f-9031-4e15-b489-6d470540bc41",
+				"method": "GET"
+			},
+			{
+				"id": "9280f208-8969-4729-8e59-6d73210a2f7e",
+				"method": "GET"
+			},
+			{
+				"id": "c4c6d23b-c039-4b0e-8ca5-78b598cbcb1d",
+				"method": "POST"
+			},
+			{
+				"id": "7b7ffb12-5eac-4f4d-b1ac-180600ba3cd6",
+				"method": "PUT"
+			},
+			{
+				"id": "a6c8805d-ebc3-4bb9-ae4f-1dbdeb84f987",
+				"method": "GET"
+			},
+			{
+				"id": "61a69450-c1cc-4dd6-814c-814580768a1d",
+				"method": "PATCH"
+			},
+			{
+				"id": "6a93e07b-42ad-43e4-8678-2489c9ea24db",
+				"method": "DELETE"
+			},
+			{
+				"id": "1fe25316-b891-48e6-a478-5225ee1c66f2",
+				"method": "DELETE"
+			}
+		]
+	}
+}

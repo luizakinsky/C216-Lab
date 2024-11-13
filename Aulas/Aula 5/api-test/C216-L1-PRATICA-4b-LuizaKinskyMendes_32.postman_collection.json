@@ -117,14 +117,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"titulo\": \"Clean Code\",\n  \"autor\": \"Robert C. Martin\",\n  \"ano_publicacao\": 2008,\n  \"quantidade\": 5\n}",
+					"raw": "{\n  \"titulo\": \"Clean Code\",\n  \"diretor\": \"Robert C. Martin\",\n  \"quantidade\": 5,\n  \"preco\": 10\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://127.0.0.1:8000/api/v1/filmes/",
+				"url": "http://localhost:8000/api/v1/filmes/",
 				"description": "Adiciona um novo filme ao repositório."
 			},
 			"response": []
@@ -221,14 +221,14 @@
 							"    pm.expect(pm.response.json().message).to.eql('Filme atualizado com sucesso!');",
 							"});",
 							"",
-							"// Validar se o livro foi atualizado corretamente",
+							"// Validar se o filme foi atualizado corretamente",
 							"pm.sendRequest(\"http://127.0.0.1:8000/api/v1/filmes/3\", function (err, res) {",
 							"    pm.test(\"Os atributos do filme foram atualizados\", function () {",
 							"        let movie = res.json();",
 							"        pm.expect(movie.titulo).to.eql(\"Clean Code - Revised Edition\");",
 							"        pm.expect(movie.diretor).to.eql(\"Robert C. Martin\");",
-							"        pm.expect(movie.ano_publicacao).to.eql(2020);",
-							"        pm.expect(movie.quantidade).to.eql(10); // Verifica se a quantidade foi alterada",
+							"        pm.expect(book.quantidade).to.eql(10); // Verifica se a quantidade foi alterada",
+							"        pm.expect(book.preco).to.eql(50);",
 							"    });",
 							"});"
 						],
@@ -248,7 +248,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"titulo\": \"Clean Code - Revised Edition\",\n  \"autor\": \"Robert C. Martin\",\n  \"ano_publicacao\": 2020,\n  \"quantidade\": 10\n}",
+					"raw": "{\n  \"titulo\": \"Clean Code - Revised Edition\",\n  \"autor\": \"Robert C. Martin\",\n  \"quantidade\": 10,\n  \"preco\": 50\n}",
 					"options": {
 						"raw": {
 							"language": "json"
